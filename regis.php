@@ -105,7 +105,7 @@ function claim($token,$kodevoucher)
 	return "GAGAL CLAIM BOS";
 	}
 	}
-function claim($token,$kodevoucher)
+function claim2($token,$kodevoucher)
 	$data = '{"promo_code":"'.$kodevoucher2.'"}';
 	$claim = request("/go-promotions/v1/promotions/enrollments",$data,"POST",$token);
 	$status=get_between($claim,'{"message":"','","');
