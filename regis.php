@@ -104,6 +104,15 @@ function claim($token,$kodevoucher)
 	else{
 	return "GAGAL CLAIM BOS";
 	}
+	$data = '{"promo_code":"'.$kodevoucher2.'"}';
+	$claim = request("/go-promotions/v1/promotions/enrollments",$data,"POST",$token);
+	$status=get_between($claim,'{"message":"','","');
+	if($status=="Your promo is now ready to use! Use it now, shall we?"){
+		return "SUKSES CLAIM BOS";
+	}
+	else{
+	return "GAGAL CLAIM BOS";
+	}
 	}
 function ganti_nomor($nomer,$email,$nama,$token,$uuid)
 	{
@@ -153,6 +162,7 @@ function verif_ganti2($uuid,$nomer,$otp_ganti2,$token,$gptoken)
 	}
 $nomer2='NOHP';
 $kodevoucher="COBAINGOJEK";
+$kodevoucher2="JAJANPAKEGOPAY";
 echo "MASUKAN NOMER REGIS = ";
 $nomer=trim(fgets(STDIN));
 $register=register($nomer);
